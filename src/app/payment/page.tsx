@@ -37,8 +37,7 @@ export default function PaymentPage() {
           variant: "destructive",
         });
         router.push(res.status === 'confirmed' ? `/confirmation?reservationId=${res.id}` : '/my-reservations');
-      }
-       else {
+      } else {
         toast({
           title: "Reservation Not Found",
           description: "Could not find the reservation details.",
@@ -47,11 +46,11 @@ export default function PaymentPage() {
         router.push('/');
       }
     } else {
-       toast({
-          title: "Missing Reservation ID",
-          description: "No reservation ID provided for payment.",
-          variant: "destructive",
-        });
+      toast({
+        title: "Missing Reservation ID",
+        description: "No reservation ID provided for payment.",
+        variant: "destructive",
+      });
       router.push('/');
     }
     setIsLoading(false);
@@ -78,8 +77,7 @@ export default function PaymentPage() {
         });
         router.push(`/confirmation?reservationId=${reservation.id}`);
       } else {
-        // This case should ideally not happen if updateReservationStatus is robust
-         toast({
+        toast({
           title: "Update Error",
           description: "Payment was successful but status update failed. Contact support.",
           variant: "destructive",
@@ -88,11 +86,11 @@ export default function PaymentPage() {
       }
     } else {
       updatedReservation = updateReservationStatus(reservation.id, 'payment_failed');
-       toast({
-          title: "Payment Failed",
-          description: "Your payment could not be processed. Please try again or use a different payment method.",
-          variant: "destructive",
-        });
+      toast({
+        title: "Payment Failed",
+        description: "Your payment could not be processed. Please try again or use a different payment method.",
+        variant: "destructive",
+      });
       setIsProcessingPayment(false);
       if (updatedReservation) {
         setReservation(updatedReservation); // Update local state to show payment_failed
@@ -102,7 +100,7 @@ export default function PaymentPage() {
 
   if (isLoading) {
     return (
-       <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8 flex justify-center items-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -114,12 +112,11 @@ export default function PaymentPage() {
   }
 
   if (!reservation) {
-    // This case should be handled by useEffect redirect, but as a fallback:
     return (
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8 text-center">
-           <Alert variant="destructive" className="max-w-md mx-auto">
+          <Alert variant="destructive" className="max-w-md mx-auto">
             <AlertTriangle className="h-5 w-5" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>
@@ -175,7 +172,6 @@ export default function PaymentPage() {
                 This is a simulated payment process. No real transaction will occur.
               </AlertDescription>
             </Alert>
-
           </CardContent>
           <CardFooter className="p-6 bg-card-foreground/5 rounded-b-lg grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Button
