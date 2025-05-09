@@ -9,7 +9,7 @@ export function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-accent hover:text-accent/90 transition-colors">
           <TreePine size={28} />
-          <span>CabinStay</span>
+          <span>Cabañas Bariloche</span>
         </Link>
         {/* Future navigation links can go here */}
       </div>
