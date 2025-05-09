@@ -53,7 +53,7 @@ export default function ConfirmationClient() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8 flex justify-center items-center">
-          <p className="text-lg text-foreground/80">Loading confirmation...</p>
+          <p className="text-lg text-foreground/80">Cargando confirmacion...</p>
         </main>
         <Footer />
       </div>
@@ -66,9 +66,9 @@ export default function ConfirmationClient() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8 text-center">
-          <p className="text-lg text-destructive">Could not load reservation details.</p>
+          <p className="text-lg text-destructive">No se puedieron cargar los detalles de reserva.</p>
           <Button onClick={() => router.push('/')} className="mt-4">
-            <Home className="mr-2 h-4 w-4" /> Go to Homepage
+            <Home className="mr-2 h-4 w-4" /> Volver Pagina principal
           </Button>
         </main>
         <Footer />
@@ -83,14 +83,14 @@ export default function ConfirmationClient() {
         <Card className="max-w-2xl mx-auto shadow-xl">
           <CardHeader className="bg-accent/10 p-8 rounded-t-lg text-center">
             <CheckCircle className="h-16 w-16 text-accent mx-auto mb-4" />
-            <CardTitle className="text-3xl md:text-4xl text-accent">Reservation Confirmed!</CardTitle>
+            <CardTitle className="text-3xl md:text-4xl text-accent">Reserva Confirmada!</CardTitle>
             <CardDescription className="text-accent/80 text-lg mt-2">
-              Thank you for booking with CabinStay. Your getaway is secured.
+              Gracias por reservar con CabinStay. Tu escapada está asegurada.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6 md:p-8 space-y-6">
             <Alert variant="default" className="bg-secondary/10 border-secondary/30">
-              <AlertTitle className="font-semibold text-secondary-foreground">Your Booking Details:</AlertTitle>
+              <AlertTitle className="font-semibold text-secondary-foreground">Detalles de su reserva:</AlertTitle>
               <AlertDescription className="text-secondary-foreground/90 mt-2 space-y-1">
                 <p><strong>Cabin:</strong> {reservation.cabinName}</p>
                 <p>
@@ -103,16 +103,15 @@ export default function ConfirmationClient() {
             </Alert>
             
             <p className="text-center text-foreground/80">
-              A confirmation email has been (simulated) sent to your address. 
-              You can view and manage your bookings in the "My Reservations" section.
+              Se ha enviado (simulado) un correo electrónico de confirmación a tu dirección. Puedes ver y gestionar tus reservas en la sección "Mis Reservas".
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
               <Button onClick={() => router.push('/my-reservations')} variant="outline" className="border-primary text-primary hover:bg-primary/10" size="lg">
-                <Eye className="mr-2 h-5 w-5" /> View My Reservations
+                <Eye className="mr-2 h-5 w-5" /> Ver mis Reservas
               </Button>
               <Button onClick={() => router.push('/')} className="bg-primary hover:bg-primary/90 text-primary-foreground" size="lg">
-                <CalendarDays className="mr-2 h-5 w-5" /> Book Another Cabin
+                <CalendarDays className="mr-2 h-5 w-5" /> Reservar otra cabaña
               </Button>
             </div>
           </CardContent>
