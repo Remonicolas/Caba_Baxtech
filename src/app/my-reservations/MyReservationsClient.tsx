@@ -75,13 +75,13 @@ export default function MyReservationsClient() {
   const getStatusBadge = (status: Reservation['status']) => {
     switch (status) {
       case 'confirmed':
-        return <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white"><CheckCircle size={14} className="mr-1" />Confirmed</Badge>;
+        return <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white"><CheckCircle size={14} className="mr-1" />Confirmado</Badge>;
       case 'pending_payment':
-        return <Badge variant="secondary" className="bg-yellow-500 hover:bg-yellow-600 text-black"><Hourglass size={14} className="mr-1" />Pending Payment</Badge>;
+        return <Badge variant="secondary" className="bg-yellow-500 hover:bg-yellow-600 text-black"><Hourglass size={14} className="mr-1" />Pago Pendiente</Badge>;
       case 'cancelled':
-        return <Badge variant="destructive" className="bg-red-600 hover:bg-red-700"><XCircle size={14} className="mr-1" />Cancelled</Badge>;
+        return <Badge variant="destructive" className="bg-red-600 hover:bg-red-700"><XCircle size={14} className="mr-1" />Cancelado</Badge>;
       case 'payment_failed':
-        return <Badge variant="destructive" className="bg-orange-500 hover:bg-orange-600"><CalendarX2 size={14} className="mr-1" />Payment Failed</Badge>;
+        return <Badge variant="destructive" className="bg-orange-500 hover:bg-orange-600"><CalendarX2 size={14} className="mr-1" />Pago no Procesado</Badge>;
       default:
         return <Badge variant="outline">{status}</Badge>;
     }
@@ -92,7 +92,7 @@ export default function MyReservationsClient() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8 flex justify-center items-center">
-          <p className="text-lg text-foreground/80">Loading your reservations...</p>
+          <p className="text-lg text-foreground/80">Cargando su reserva...</p>
         </main>
         <Footer />
       </div>
@@ -105,9 +105,9 @@ export default function MyReservationsClient() {
       <main className="flex-grow container mx-auto px-4 py-12">
         <div className="flex flex-col items-center mb-10">
           <ListChecks className="h-16 w-16 text-accent mb-4" />
-          <h1 className="text-4xl font-bold text-accent text-center">My Reservations</h1>
+          <h1 className="text-4xl font-bold text-accent text-center">Mi Reserva</h1>
           <p className="text-lg text-foreground/70 mt-2 text-center max-w-xl">
-            View, manage, or cancel your cabin bookings. Your adventure history, all in one place.
+            Consulta, gestiona o cancela tus reservas de camarote. Tu historial de aventuras, todo en un solo lugar..
           </p>
         </div>
 
@@ -115,16 +115,16 @@ export default function MyReservationsClient() {
           <Card className="text-center py-12 shadow-lg">
             <CardHeader>
               <CalendarX2 size={48} className="mx-auto text-muted-foreground mb-4" />
-              <CardTitle className="text-2xl text-foreground">No Reservations Yet</CardTitle>
+              <CardTitle className="text-2xl text-foreground">Aun no hay reservas</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-lg text-muted-foreground">
-                You haven't made any bookings. Time to find your perfect cabin!
+                Aún no has hecho ninguna reserva. Es hora de encontrar tu cabaña ideal!
               </CardDescription>
             </CardContent>
             <CardFooter className="justify-center">
               <Button onClick={() => router.push('/')} size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Home className="mr-2 h-5 w-5" /> Explore Cabins
+                <Home className="mr-2 h-5 w-5" /> Buscar cabañas
               </Button>
             </CardFooter>
           </Card>
@@ -149,19 +149,19 @@ export default function MyReservationsClient() {
                 </CardHeader>
                 <CardContent className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <p className="font-semibold text-foreground">Dates:</p>
+                    <p className="font-semibold text-foreground">Fechas:</p>
                     <p className="text-foreground/80">
                       {format(new Date(res.checkInDate + 'T00:00:00'), 'EEE, MMM d, yyyy')} - {format(new Date(res.checkOutDate + 'T00:00:00'), 'EEE, MMM d, yyyy')}
                     </p>
                   </div>
                   <div>
                     <p className="font-semibold text-foreground flex items-center">
-                      <DollarSign size={16} className="mr-1 text-primary" /> Total Price:
+                      <DollarSign size={16} className="mr-1 text-primary" /> Precio Total:
                     </p>
                     <p className="text-foreground/80">${res.totalPrice}</p>
                   </div>
                   <div className="md:col-span-2">
-                    <p className="font-semibold text-foreground">Reservation ID:</p>
+                    <p className="font-semibold text-foreground">Numero de Reserva:</p>
                     <p className="text-xs text-muted-foreground">{res.id}</p>
                   </div>
                 </CardContent>
@@ -170,20 +170,20 @@ export default function MyReservationsClient() {
                      <AlertDialog>
                       <AlertDialogTrigger asChild>
                         <Button variant="destructive" size="sm">
-                          <XCircle size={16} className="mr-2" /> Cancel Reservation
+                          <XCircle size={16} className="mr-2" /> Cancelar Reserva
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogTitle>Estas Seguro ?</AlertDialogTitle>
                           <AlertDialogDescription>
-                            This will cancel your reservation for {res.cabinName} from {format(new Date(res.checkInDate + 'T00:00:00'), 'PPP')} to {format(new Date(res.checkOutDate + 'T00:00:00'), 'PPP')}. This action cannot be undone.
+                            Esto cancelará su reserva para {res.cabinName} de {format(new Date(res.checkInDate + 'T00:00:00'), 'PPP')} a {format(new Date(res.checkOutDate + 'T00:00:00'), 'PPP')}. Esta acción no se puede deshacer.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Keep Reservation</AlertDialogCancel>
+                          <AlertDialogCancel>Mantener Reserva</AlertDialogCancel>
                           <AlertDialogAction onClick={() => handleCancelReservation(res.id)} className="bg-destructive hover:bg-destructive/90 text-destructive-foreground">
-                            Confirm Cancellation
+                            Confirmar Cancelacion
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
@@ -193,7 +193,7 @@ export default function MyReservationsClient() {
                 {res.status === 'payment_failed' && (
                    <CardFooter className="p-4 sm:p-6 bg-muted/30">
                     <Button onClick={() => router.push(`/payment?reservationId=${res.id}`)} variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                      <Info size={16} className="mr-2" /> Retry Payment
+                      <Info size={16} className="mr-2" /> Reintentar Pago
                     </Button>
                   </CardFooter>
                 )}
