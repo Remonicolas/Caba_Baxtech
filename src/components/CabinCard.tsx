@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -18,7 +19,7 @@ import {
   Wifi,
   MountainSnow,
   Waves,
-  ParkingCircle,
+  // ParkingCircle, // Not used, can be removed if not planned
   Utensils,
 } from 'lucide-react';
 import { Badge } from './ui/badge';
@@ -55,16 +56,18 @@ function TreePineIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
+// Note: 'Fireplace' icon was removed from lucide-react in an earlier step. 
+// If Fireplace is a key amenity, a custom SVG or alternative icon should be used.
+// For now, BedDouble is used as a placeholder for Fireplace and BBQ Grill.
 const amenityIcons: { [key: string]: React.ElementType } = {
   'Wi-Fi': Wifi,
   'Kitchen': Utensils,
   'Lake View': Waves,
-  'Fireplace': BedDouble, // Podés reemplazarlo con otro ícono si querés algo más representativo
+  'Fireplace': BedDouble, 
   'Hot Tub': () => <span className="text-sm">♨️</span>,
   'Mountain View': MountainSnow,
-  'Hiking Trails Access': MountainSnow,
-  'BBQ Grill': BedDouble, // Reutilizado por ahora
+  'Hiking Trails Access': MountainSnow, // Could use a different icon like 'Hiking' if available or custom
+  'BBQ Grill': BedDouble, 
   'Pet Friendly': () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +88,7 @@ const amenityIcons: { [key: string]: React.ElementType } = {
   ),
   'Forest Access': TreePineIcon,
   'Private Deck': () => (
-    <svg
+    <svg // Placeholder for Deck Icon
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
@@ -96,15 +99,15 @@ const amenityIcons: { [key: string]: React.ElementType } = {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M2 9L12 4L22 9L12 14L2 9Z" />
-      <path d="M2 15L12 10L22 15" />
-      <path d="M2 9V15" />
-      <path d="M12 14V20" />
-      <path d="M22 9V15" />
+      <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+       <line x1="3" y1="15" x2="21" y2="15" />
+       <line x1="9" y1="3" x2="9" y2="21" />
+       <line x1="15" y1="3" x2="15" y2="21" />
     </svg>
   ),
   'Star Gazing': () => (
-    <svg
+    <svg // Placeholder for Star Gazing
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
@@ -134,9 +137,11 @@ export function CabinCard({ cabin, onBookNow }: CabinCardProps) {
           <Image
             src={cabin.imageUrl}
             alt={cabin.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{objectFit:"cover"}}
             data-ai-hint={dataAiHint}
+            priority={cabin.id === 'cabin1'} // Example: prioritize the first cabin image for LCP
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
         <div className="p-6">
@@ -162,12 +167,12 @@ export function CabinCard({ cabin, onBookNow }: CabinCardProps) {
             </h4>
             <div className="flex flex-wrap gap-2">
               {cabin.amenities.map((amenity) => {
-                const IconComponent = amenityIcons[amenity] || BedDouble;
+                const IconComponent = amenityIcons[amenity] || BedDouble; // Fallback to BedDouble
                 const iconElement =
                   typeof IconComponent === 'function' &&
-                  IconComponent.name !== ''
-                    ? <IconComponent />
-                    : <IconComponent size={14} />;
+                  IconComponent.displayName // Check if it's a Lucide icon or similar component
+                    ? <IconComponent size={14} />
+                    : <IconComponent />; // For inline SVGs or custom components not taking size prop
                 return (
                   <Badge
                     key={amenity}
