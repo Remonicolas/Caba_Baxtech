@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { CheckCircle, Home, CalendarDays, Eye } from 'lucide-react';
 import { format } from 'date-fns';
@@ -15,6 +15,14 @@ import { Footer } from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 
 export default function ConfirmationPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ConfirmationContent />
+    </Suspense>
+  );
+}
+
+function ConfirmationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
