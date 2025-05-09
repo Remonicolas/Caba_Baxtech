@@ -130,7 +130,7 @@ export default function ReservationsClient() {
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8 flex justify-center items-center">
-          <p className="text-lg text-foreground/80">Loading cabin details...</p>
+          <p className="text-lg text-foreground/80">Cargando detalles de cabaña...</p>
         </main>
         <Footer />
       </div>
@@ -163,7 +163,7 @@ export default function ReservationsClient() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-foreground">Select Check-in Date</h3>
+                <h3 className="text-lg font-semibold text-foreground">Seleccion Check-in Date</h3>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
@@ -174,7 +174,7 @@ export default function ReservationsClient() {
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4 text-primary" />
-                      {checkInDate ? format(checkInDate, "PPP") : <span>Pick a date</span>}
+                      {checkInDate ? format(checkInDate, "PPP") : <span>Elegi la fecha</span>}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0 bg-popover" align="start">
@@ -192,17 +192,17 @@ export default function ReservationsClient() {
                 </Popover>
                  <p className="text-sm text-muted-foreground flex items-center">
                   <Info size={14} className="mr-1 text-primary" />
-                  Reservations are for 1 night. Check-out is the next day.
+                  Las reservas son por una noche. La salida es al día siguiente..
                 </p>
               </div>
 
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-foreground">Cabin Details</h3>
+                <h3 className="text-lg font-semibold text-foreground">Detalles de cabaña</h3>
                 <p className="flex items-center text-foreground/80">
-                  <Users size={16} className="mr-2 text-primary" /> Capacity: {selectedCabin.capacity} guests
+                  <Users size={16} className="mr-2 text-primary" /> Capacidad: {selectedCabin.capacity} guests
                 </p>
                 <p className="text-2xl font-bold text-accent flex items-center">
-                  <DollarSign size={24} className="mr-1" /> Price: ${currentPrice}
+                  <DollarSign size={24} className="mr-1" /> Precio: ${currentPrice}
                   <span className="text-sm font-normal text-muted-foreground ml-1">/night</span>
                 </p>
               </div>
@@ -211,11 +211,11 @@ export default function ReservationsClient() {
             {checkInDate && (
               <Alert variant="default" className="bg-accent/10 border-accent/30">
                 <CheckCircle className="h-5 w-5 text-accent" />
-                <AlertTitle className="text-accent font-semibold">You've selected:</AlertTitle>
+                <AlertTitle className="text-accent font-semibold">Has seleccionado:</AlertTitle>
                 <AlertDescription className="text-accent/90">
                   Check-in: {format(checkInDate, "PPP")} <br />
                   Check-out: {format(addDays(checkInDate, 1), "PPP")} <br />
-                  Total Price: ${currentPrice}
+                  Precio Total: ${currentPrice}
                 </AlertDescription>
               </Alert>
             )}
@@ -223,9 +223,9 @@ export default function ReservationsClient() {
             {!checkInDate && (
               <Alert variant="default" className="bg-secondary/10 border-secondary/30">
                 <AlertTriangle className="h-5 w-5 text-secondary-foreground" />
-                <AlertTitle className="text-secondary-foreground">Select a Date</AlertTitle>
+                <AlertTitle className="text-secondary-foreground">Seleccione fecha</AlertTitle>
                 <AlertDescription className="text-secondary-foreground/80">
-                  Please pick a check-in date to see final pricing and proceed with your booking.
+                  Seleccione una fecha de llegada para ver el precio final y continuar con su reserva.
                 </AlertDescription>
               </Alert>
             )}
