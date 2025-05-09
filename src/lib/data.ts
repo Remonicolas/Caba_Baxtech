@@ -3,41 +3,41 @@ import type { Cabin, Reservation } from './types';
 export const cabins: Cabin[] = [
   {
     id: 'cabin1',
-    name: 'Lakeside Retreat',
-    description: 'A beautiful cabin by the serene lake, perfect for a weekend getaway.',
+    name: 'Retiro junto al lago',
+    description: 'Una hermosa cabaña junto a un lago sereno, perfecta para una escapada de fin de semana.',
     imageUrl: 'https://picsum.photos/seed/cabin1/600/400',
     basePrice: 150,
-    amenities: ['Wi-Fi', 'Kitchen', 'Lake View', 'Fireplace'],
+    amenities: ['Wi-Fi', 'Cocina', 'Vista al lago', 'Chimenea'],
     capacity: 4,
   },
   {
     id: 'cabin2',
-    name: 'Mountain Hideaway',
-    description: 'Cozy cabin nestled in the mountains, offering breathtaking views.',
+    name: 'Escondite en la montaña',
+    description: 'Acogedora cabaña en las montañas, con vistas impresionantes.',
     imageUrl: 'https://picsum.photos/seed/cabin2/600/400',
     basePrice: 180,
-    amenities: ['Hot Tub', 'Mountain View', 'Hiking Trails Access', 'BBQ Grill'],
+    amenities: ['Jacuzzi', 'Vista a la montaña', 'Acceso a senderos', 'Parrilla'],
     capacity: 6,
   },
   {
     id: 'cabin3',
-    name: 'Forest Haven',
-    description: 'A secluded cabin deep in the forest, ideal for nature lovers.',
+    name: 'Refugio en el bosque',
+    description: 'Cabaña aislada en medio del bosque, ideal para amantes de la naturaleza.',
     imageUrl: 'https://picsum.photos/seed/cabin3/600/400',
     basePrice: 120,
-    amenities: ['Pet Friendly', 'Forest Access', 'Private Deck', 'Star Gazing'],
+    amenities: ['Admite mascotas', 'Acceso al bosque', 'Terraza privada', 'Observación de estrellas'],
     capacity: 2,
   },
 ];
 
-// Store reservations in-memory for this example
-// Note: In a real app, this state would not persist across requests/rebuilds.
-// For proper persistence, a database is needed.
+// Almacena las reservas en memoria solo para este ejemplo
+// Nota: En una app real, este estado no persistiría entre solicitudes o recargas.
+// Para una persistencia adecuada, se necesita una base de datos.
 let reservationsStore: Reservation[] = [
   {
     id: 'res-initial-1',
     cabinId: 'cabin1',
-    cabinName: 'Lakeside Retreat',
+    cabinName: 'Retiro junto al lago',
     userId: 'user123',
     checkInDate: getFutureDateString(3),
     checkOutDate: getFutureDateString(4),
@@ -48,7 +48,7 @@ let reservationsStore: Reservation[] = [
   },
 ];
 
-// Helper to get a date string for N days from now
+// Función auxiliar para obtener una fecha N días en el futuro
 export function getFutureDateString(days: number): string {
   const date = new Date();
   date.setDate(date.getDate() + days);
@@ -62,8 +62,8 @@ export function getBookedDates(cabinId: string): string[] {
 }
 
 export function calculatePrice(basePrice: number, date: Date): number {
-  const day = date.getDay(); // 0 for Sunday, 6 for Saturday
-  if (day === 0 || day === 6) { // Weekend
+  const day = date.getDay(); // 0 es domingo, 6 es sábado
+  if (day === 0 || day === 6) { // Fin de semana
     return Math.round(basePrice * 1.2);
   }
   return basePrice;
