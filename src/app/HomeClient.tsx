@@ -26,10 +26,10 @@ export default function HomeClient() {
       <main className="flex-grow container mx-auto px-4 py-8">
         <section className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-4">
-            Discover Your Perfect Cabin Getaway
+            Descubra su escapada perfecta a una cabaña
           </h1>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Escape to nature with our selection of beautiful and cozy cabins. Find the ideal spot for your next adventure or relaxing retreat.
+            Escápate a la naturaleza con nuestra selección de hermosas y acogedoras cabañas. Encuentra el lugar ideal para tu próxima aventura o retiro relajante..
           </p>
         </section>
 
@@ -42,12 +42,12 @@ export default function HomeClient() {
         </section>
 
         <section className="text-center mt-16 py-12 bg-card rounded-lg shadow-md">
-          <h2 className="text-3xl font-semibold text-accent mb-4">Ready for an Adventure?</h2>
+          <h2 className="text-3xl font-semibold text-accent mb-4">Listo para la aventura?</h2>
           <p className="text-foreground/80 mb-6 max-w-xl mx-auto">
-            View your existing bookings or explore more options. Your next unforgettable experience is just a click away.
+            Consulta tus reservas actuales o explora más opciones. Tu próxima experiencia inolvidable está a un clic de distancia..
           </p>
           <Button size="lg" onClick={() => router.push('/my-reservations')} className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            My Reservations
+            Mis Reservas
             <ArrowRight size={20} className="ml-2" />
           </Button>
         </section>
